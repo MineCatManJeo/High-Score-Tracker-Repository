@@ -9,6 +9,7 @@
 ####
 ####
 ####
+leaderboard = ["ej", "db"]
 
 def hs_leaderboard():
     print("Welcome to the High Score Leaderboard!\n")
@@ -20,17 +21,24 @@ def hs_leaderboard():
     if highscore_query == 1:
         print("Enter the name of the leaderboard here")
         return
-    if highscore_query == 2:
+    elif highscore_query == 2:
         pass
-    if highscore_query == 3:
-        keyw_user = input("Enter a player's username to see all of their registered scores.")
+    elif highscore_query == 3:
+        keyw_user = input("Enter a player's username to see all of their registered scores.\n")
         if not keyw_user:
             print("Search failed, please be more specific and try again.")
             return
         #Named list of leaderboard
-    if highscore_query == 4:
-        return print("Thank you for using our system!")
-    pass
+        for user in leaderboard:
+            pass
+    elif highscore_query == 4:
+        print("Thank you for using our system!\n")
+        return
+    else:
+        print("This doesn't work, try something else or be more specific.\n")
+        return
+    
+hs_leaderboard()
 
 ####
 ####
