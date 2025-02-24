@@ -2,42 +2,17 @@
 
 import csv
 
-# Function: user_profiles
-def user_profiles():
-#     If previous user data exists then
-    try:
-        with open('Personal Projects/To Do List/tasks.txt', 'r', newline='') as file:
-            csv_reader = csv.reader(file)
-            users = list(csv_reader)
-
-    except FileNotFoundError:
-        users = []
-
-#         Import user data
-
-#     Else/Otherwise:
-#         Create an empty user data dictionary
-   
-#     user_choice equals a Input saying "Do you want to make a new account or access an existing one?: "
-
-#     If user_choice is equal to "access" Then
-#         Call access_account function
-
-#     Else if user_choice is equal to "new" Then
-#         Call new_account function
-
-#     Return user_profiles[user_key]
-
-# End the function
-
-
 
 # Function access_account
-#     While true do:
-#         username equals a  Input saying to  "Enter your username: "
+def access_account(users):
+    while True:
+        username = input("What is your username?: ").strip()
         
-#         If username exists in user_profiles Then
-#             password = Input saying to "Enter your password: "
+        if username not in users:
+            print("That username does not exist.")
+            continue
+
+        password = 
             
 #             If password matches user_profiles[username]["password"] Then
 #                 user_key equals username
@@ -80,3 +55,25 @@ def user_profiles():
 #     End the while true
 # End the function
 
+def user_profiles():
+    try:
+        with open('Personal Projects/To Do List/tasks.txt', 'r', newline='') as file:
+            csv_reader = csv.reader(file)
+            users = list(csv_reader)
+
+    except FileNotFoundError:
+        users = []
+   
+    user_choice = input("Do you want to make a new acount(1) or access a account(2)?: ").strip()
+
+    if user_choice == "2":
+        user_key = access_account()
+#     If user_choice is equal to "access" Then
+#         Call access_account function
+
+#     Else if user_choice is equal to "new" Then
+#         Call new_account function
+
+#     Return user_profiles[user_key]
+
+# End the function
