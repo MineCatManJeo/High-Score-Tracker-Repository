@@ -1,7 +1,7 @@
 #Alex Anderson High Score Tracker
 
 import csv
-
+import os
 
 # Function access_account
 def access_account(users):
@@ -12,7 +12,7 @@ def access_account(users):
             print("That username does not exist.")
             continue
 
-        password = 
+        password = ""
             
 #             If password matches user_profiles[username]["password"] Then
 #                 user_key equals username
@@ -28,6 +28,7 @@ def access_account(users):
 
 # Function new_account
 #     While true do:
+#         
 #         username equals a Input saying to "Enter your desired username: "
         
 #         If username already exists in user_profiles Then
@@ -77,3 +78,11 @@ def user_profiles():
 #     Return user_profiles[user_key]
 
 # End the function
+
+
+
+username = input("What is your name you want to go by?: ")
+password = input("What do you want your password to be?: ")
+with open("users.csv", "a", newline='') as file:
+    csv_writer = csv.writer(file)
+    csv_writer.writerow([username,password,[],[],[]])
