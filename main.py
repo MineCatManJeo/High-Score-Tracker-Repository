@@ -1,88 +1,72 @@
-#Alex Anderson High Score Tracker
-
 import csv
-import os
 
-# Function access_account
+# Function to load user profiles from CSV
+def load_user_profiles():
+    users = {}
+    try:
+        with open("users.csv", "r", newline="") as file:
+            csv_reader = csv.reader(file)
+            for row in csv_reader:
+                if len(row) >= 5:
+                    username, password = row[0], row[1]
+                    leaderboards = [row[2].strip("[]").split(", "), row[3].strip("[]").split(", "), row[4].strip("[]").split(", ")]
+                    users[username] = {"password": password, "leaderboard_one": [item.strip() for item in leaderboards[0]], "leaderboard_two": [item.strip() for item in leaderboards[1]], "leaderboard_three": [item.strip() for item in leaderboards[2]]}
+    except FileNotFoundError:
+        pass
+    return users
+
+# Function to save user profiles to CSV
+def save_user_profiles(users):
+    with open("users.csv", "w", newline="") as file:
+        csv_writer = csv.writer(file)
+        for username, data in users.items():
+            csv_writer.writerow([username, data["password"], str(data["leaderboard_one"]), str(data["leaderboard_two"]), str(data["leaderboard_three"])] )
+
+# Function to access an account
 def access_account(users):
     while True:
         username = input("What is your username?: ").strip()
-        
         if username not in users:
             print("That username does not exist.")
             continue
-
-        password = ""
-            
-#             If password matches user_profiles[username]["password"] Then
-#                 user_key equals username
-#                 Return user_key
-#             Else/Otherwise:
-#                 Display "Incorrect password. Try again.”
-#         Else/Otherwise:
-#             Display "Username not found. Try again."
-#         End the while true
-# End the function
-
-
-
-# Function new_account
-#     While true do:
-#         
-#         username equals a Input saying to "Enter your desired username: "
         
-#         If username already exists in user_profiles Then
-#             Display "That username is already taken. Try again."
-#         Else/Otherwise:
-#             password equals a input saying to "Enter your password: "
-            
-#             #Making empty leaderboard scores for new user
-#             leaderboard_one equals []
-#             leaderboard_two equals []
-#             leaderboard_three equals []
-            
-#             # Storing user data in dictionary form
-#             user_info = {
-#                 "password": password,
-#                 "leaderboard_one": leaderboard_one,
-#                 "leaderboard_two": leaderboard_two,
-#                 "leaderboard_three": leaderboard_three
-#             }
-            
-#             # Adding user data to profiles
-#             user_profiles[username] is equal to user_info
-#             user_key is equal to username
-#             Return user_key
-#     End the while true
-# End the function
+        password = input("Enter your password: ").strip()
+        if password == users[username]["password"]:
+            print("Login successful!")
+            return username
+        else:
+            print("Incorrect password. Try again.")
 
-def user_profiles():
-    try:
-        with open('Personal Projects/To Do List/tasks.txt', 'r', newline='') as file:
-            csv_reader = csv.reader(file)
-            users = list(csv_reader)
+# Function to create a new account
+def new_account(users):
+    while True:
+        username = input("Enter your desired username: ").strip()
+        if username in users:
+            print("That username is already taken. Try again.")
+            continue
+        
+        password = input("Enter your password: ").strip()
+        users[username] = {"password": password, "leaderboard_one": [], "leaderboard_two": [], "leaderboard_three": []}
+        print("Account created successfully!")
+        return username
 
-    except FileNotFoundError:
-        users = []
-   
-    user_choice = input("Do you want to make a new acount(1) or access a account(2)?: ").strip()
+# Main function to handle user login or account creation
+def main():
+    users = load_user_profiles()
+    
+    while True:
+        choice = input("Do you want to make a new account (1) or access an account (2)?: ").strip()
+        if choice == "1":
+            user_key = new_account(users)
+            break
+        elif choice == "2":
+            user_key = access_account(users)
+            break
+        else:
+            print("Invalid choice. Please enter 1 or 2.")
+    
+    save_user_profiles(users)
+    print(f"Welcome, {user_key}!")
 
-    if user_choice == "2":
-        user_key = access_account()
-#     If user_choice is equal to "access" Then
-#         Call access_account function
-
-#     Else if user_choice is equal to "new" Then
-#         Call new_account function
-
-#     Return user_profiles[user_key]
-
-# End the function
-
-
-
-username = input("What is your name you want to go by?: ")
-password = input("What do you want your password to be?: ")
-with open("users.csv", "a", newline='') as file:
-    csv_writer = csv.writer(file)
-    csv_writer.writerow([username,password,[],[],[]])
+if __name__ == "__main__":
+    main()
