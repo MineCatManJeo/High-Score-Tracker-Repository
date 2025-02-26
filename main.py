@@ -68,5 +68,4 @@ def main():
     save_user_profiles(users)
     print(f"Welcome, {user_key}!")
 
-if __name__ == "__main__":
-    main()
+main()
