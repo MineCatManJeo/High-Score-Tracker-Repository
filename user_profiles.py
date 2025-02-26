@@ -26,7 +26,7 @@ def save_user_profiles(users):
 # Function to access an account
 def access_account(users):
     while True:
-        username = input("What is your username?(Type leave to leave): ").strip()
+        username = input("What is your username?(Type leave to make a new account): ").strip()
 
         if username == "leave":
             return(False)
