@@ -1,4 +1,4 @@
-#Max H, Keyboard Game (FYI you may need to download the keyboard module using "pip install keyboard" inside the terminal if you do not do this the code will not run)
+#Max H, Keyboard Game, (FYI you may need to download the keyboard module using "pip install keyboard" inside the terminal if you do not do this the code will not run), you will also need to import time
 
 import keyboard
 
