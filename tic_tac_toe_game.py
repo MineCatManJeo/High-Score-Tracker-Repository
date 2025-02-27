@@ -16,6 +16,7 @@ def check_player_valid_spot(tic_board, player_choice, can_continue):
             if tic_board[player_choice] == "Empty":
                 tic_board[player_choice] = "O"
                 print(f"Successfully put an O in spot {player_choice}.")
+                print(type(tic_board))
                 return tic_board, True
             else:
                 print("There is already an X or an O in that spot please try again.")
@@ -28,7 +29,6 @@ def check_player_valid_spot(tic_board, player_choice, can_continue):
         return tic_board
 
 def check_computer_valid_spot(tic_board, computer_choice, computer_space_list):
-    computer_choice = computer_choice.lower()
     if computer_choice in computer_space_list:
         if tic_board[computer_choice] == "Empty":
             tic_board[computer_choice] = "X"
@@ -52,11 +52,15 @@ def computer_board_choice(tic_board, can_continue):
         while computer_spot_valid == False:
             computer_choice = random.choice(computer_space_list)
             tic_board, computer_spot_valid = check_computer_valid_spot(tic_board, computer_choice, computer_space_list)
+            return tic_board
     else:
         return tic_board
 
 def check_winner(tic_board):
     tic_winner = "Nobody"
+    print(type(tic_board))
+    value_list = tic_board.values()
+    print(value_list)
     if tic_board["first"] == "O" and tic_board["second"] == "O" and tic_board["third"] == "O":
         tic_winner = "Player"
     elif tic_board["first"] == "O" and tic_board["fourth"] == "O" and tic_board["seventh"] == "O":
@@ -91,11 +95,44 @@ def check_winner(tic_board):
         tic_winner = "Computer"
     return tic_winner
 
-def add_stop_winstreak(tic_winner, player_winstreak, can_continue):
-    can_continue == False
+def add_stop_winstreak(tic_winner, player_winstreak):
     if tic_winner == "Computer":
         return player_winstreak, False
     elif tic_winner == "Player":
         return player_winstreak + 1, True
     else:
         print("Unexpected error occurred.")
+
+def tic_tac_toe_game(tic_board):
+    player_winstreak = 0
+    tic_board_to_get_back_to = tic_board
+    player_can_continue = True
+    while player_can_continue == True:
+        tic_board = computer_board_choice(tic_board, player_can_continue)
+        who_has_won = check_winner(tic_board)
+        if who_has_won != "Nobody":
+            if who_has_won == "Computer":
+                player_winstreak, player_can_continue = add_stop_winstreak(who_has_won, player_winstreak)
+                tic_board = tic_board_to_get_back_to
+                print(f"Sadly you have lost your ending winstreak was: {player_winstreak}")
+            elif who_has_won == "Player":
+                player_winstreak, player_can_continue = add_stop_winstreak(who_has_won, player_winstreak)
+                tic_board = tic_board_to_get_back_to
+                print("You have won this game another win was added to your winstreak!")
+        print_board(tic_board)
+        user_board_choice = input("The computer has done their turn which which space on the board do you want to put an O in?: ")
+        tic_board = check_player_valid_spot(tic_board, user_board_choice, player_can_continue)
+        print(tic_board)
+        who_has_won = check_winner(tic_board)
+        if who_has_won != "Nobody":
+            if who_has_won == "Computer":
+                player_winstreak, player_can_continue = add_stop_winstreak(who_has_won, player_winstreak)
+                tic_board = tic_board_to_get_back_to
+                print(f"Sadly you have lost your ending winstreak was: {player_winstreak}")
+            elif who_has_won == "Player":
+                player_winstreak, player_can_continue = add_stop_winstreak(who_has_won, player_winstreak)
+                tic_board = tic_board_to_get_back_to
+                print("You have won this game another win was added to your winstreak!")
+    return player_winstreak
+
+tic_tac_toe_game(tic_tac_toe_board)
