@@ -15,12 +15,21 @@ def load_user_profiles():
         pass
     return users
 
+#function to turn user leaderboard into a list
+def leaderboard_fixer(users):
+    with open("users.csv", "r", newline="") as file:
+        csv_reader = csv.reader(file)
+        for username, data in users.items():
+            print()
+
+
+
 # Function to save user profiles to CSV
 def save_user_profiles(users):
     with open("users.csv", "w", newline="") as file:
         csv_writer = csv.writer(file)
         for username, data in users.items():
-            print(str(data["leaderboard_one"]))
+            scores_one = data["leaderboard_one"].split()
             csv_writer.writerow([username, data["password"], data["leaderboard_one"], data["leaderboard_two"], data["leaderboard_three"]] )
     return
 
