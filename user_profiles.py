@@ -20,7 +20,8 @@ def save_user_profiles(users):
     with open("users.csv", "w", newline="") as file:
         csv_writer = csv.writer(file)
         for username, data in users.items():
-            csv_writer.writerow([username, data["password"], str(data["leaderboard_one"]), str(data["leaderboard_two"]), str(data["leaderboard_three"])] )
+            print(str(data["leaderboard_one"]))
+            csv_writer.writerow([username, data["password"], data["leaderboard_one"], data["leaderboard_two"], data["leaderboard_three"]] )
     return
 
 # Function to access an account
@@ -58,7 +59,6 @@ def new_account(users):
 # Main function to handle user login or account creation
 def user_login():
     users = load_user_profiles()
-    
     print("Welcome to Game Central!")
     while True:
         choice = input("Do you want to make a new account (1) or access an account (2)?: ").strip()
