@@ -9,7 +9,7 @@
 ####
 ####
 ####
-leaderboard = [""]
+leaderboard = ["huh", "who", "what", "when", "where", "why", "how", "maybe", "difficulties", "solutions", "inexistant"]
 
 def hs_leaderboard():
     print("Welcome to the High Score Leaderboard!\n")
@@ -22,9 +22,10 @@ def hs_leaderboard():
         print("Enter the name of the registered leaderboard here")
         return
     elif highscore_query == 2:
-        leaderboard.slice[:10]
-        print(f"Here's the top ten scores! \n{leaderboard}")
-        return
+        for user in leaderboard:
+            
+            print(f"Here's the top ten scores! \n{leaderboard}")
+            return
     elif highscore_query == 3:
         keyw_user = input("Enter a player's username to see all of their registered scores.\n")
         if not keyw_user:
@@ -40,6 +41,7 @@ def hs_leaderboard():
         print("This doesn't work, try something else or be more specific.\n")
         return
 
+hs_leaderboard()
 ####
 ####
 ####
