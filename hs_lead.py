@@ -23,6 +23,11 @@ leaderboard = {
     "inexistant": 1000
 } #Placeholder names
 
+#Relative paths.
+#guessing.csv 
+#keyboard.csv
+#tic_tac.csv
+
 def hs_leaderboard():
 
     print("Welcome to the High Score Leaderboard!\n")
@@ -38,11 +43,11 @@ def hs_leaderboard():
             continue #Restart back
 
         if hs_interface == "1": #Tic Tac Toe
-            pass
+            print("Welcome to the Tic Tac Toe Leaderboard!")
         if hs_interface == "2": #Num Guessing
-            pass
+            print("Welcome to the Number Guessing Leaderboard!")
         if hs_interface == "3": #Keyboard
-            pass
+            print("Welcome to the Keyboard Clicking Leaderboard!")
         if hs_interface == "4":
             print("Thank you for using our system, goodbye!")
             continue #Loop back to main function that will be shared with the group soon.
