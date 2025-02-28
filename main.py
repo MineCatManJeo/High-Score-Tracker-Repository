@@ -37,17 +37,41 @@ def game_library(user_key):
         if user_input.isnumeric():
             user_input = int(user_input)
             if user_input == 1:
-                print("Doing this game again WILL OVERWRITE YOUR PREVIOUS SCORE.")
-                keyboard_game_high_score = keyboard_game.spacebar_per_seconds_game()
-                high_score_dict["keyboard"] = keyboard_game_high_score
+                if high_score_dict["keyboard"] == "Nothing":
+                    keyboard_game_high_score = keyboard_game.spacebar_per_seconds_game()
+                    high_score_dict["keyboard"] = keyboard_game_high_score
+                else:
+                    user_warning_decision = input("Doing this game again WILL OVERWRITE YOUR PREVIOUS SCORE are you sure you want to continue? Y/N: ")
+                    if user_warning_decision.lower() == "y":
+                        keyboard_game_high_score = keyboard_game.spacebar_per_seconds_game()
+                        high_score_dict["keyboard"] = keyboard_game_high_score
+                    else:
+                        print("Ok cancelling the game.")
+                        continue
             elif user_input == 2:
-                print("Doing this game again WILL OVERWRITE YOUR PREVIOUS SCORE.")
-                number_guessing_game_high_score = number_guessing_game.number_guessing_game()
-                high_score_dict["guessing"] = number_guessing_game_high_score
+                if high_score_dict["guessing"] == "Nothing":
+                    number_guessing_game_high_score = number_guessing_game.number_guessing_game()
+                    high_score_dict["guessing"] = number_guessing_game_high_score
+                else:
+                    user_warning_decision = input("Doing this game again WILL OVERWRITE YOUR PREVIOUS SCORE are you sure you want to continue? Y/N: ")
+                    if user_warning_decision.lower() == "y":
+                        number_guessing_game_high_score = number_guessing_game.number_guessing_game()
+                        high_score_dict["guessing"] = number_guessing_game_high_score
+                    else:
+                        print("Ok cancelling the game.")
+                        continue
             elif user_input == 3:
-                print("Doing this game again WILL OVERWRITE YOUR PREVIOUS SCORE.")
-                tic_tac_toe_game_high_score = tic_tac_toe_game.tic_tac_toe_game()
-                high_score_dict["tic_tac"] = tic_tac_toe_game_high_score
+                if high_score_dict["tic_tac"] == "Nothing":
+                    tic_tac_toe_game_high_score = tic_tac_toe_game.tic_tac_toe_game()
+                    high_score_dict["tic_tac"] = tic_tac_toe_game_high_score
+                else:
+                    user_warning_decision = input("Doing this game again WILL OVERWRITE YOUR PREVIOUS SCORE are you sure you want to continue? Y/N: ")
+                    if user_warning_decision.lower() == "y":
+                        tic_tac_toe_game_high_score = tic_tac_toe_game.tic_tac_toe_game()
+                        high_score_dict["tic_tac"] = tic_tac_toe_game_high_score
+                    else:
+                        print("Ok cancelling the game.")
+                        continue
             elif user_input == 4:
                 print("Hope these games were fun! See you next time.")
                 break
