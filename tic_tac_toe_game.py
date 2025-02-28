@@ -2,13 +2,16 @@
 import copy
 import random
 
+#The tic tac toe board
 tic_tac_toe_board = {"first": "Empty", "second": "Empty", "third": "Empty", "fourth": "Empty", "fifth": "Empty", "sixth": "Empty", "seventh": "Empty", "eighth": "Empty", "ninth": "Empty"}
 
+#A function to print the board
 def print_board(tic_board):
     print(tic_board["first"], tic_board["second"], tic_board["third"])
     print(tic_board["fourth"], tic_board["fifth"], tic_board["sixth"])
     print(tic_board["seventh"], tic_board["eighth"], tic_board["ninth"])
 
+#A function to add a players spot to the board while including error handling
 def check_player_valid_spot(tic_board, player_choice, can_continue):
     if can_continue == True:
         player_choice = player_choice.lower()
@@ -27,6 +30,7 @@ def check_player_valid_spot(tic_board, player_choice, can_continue):
         print("Unexpected error has occured you cannot continue playing this streak.")
         return tic_board
 
+#Basically the same thing as the player one but tweaked because its for the computer
 def check_computer_valid_spot(tic_board, computer_choice, computer_space_list):
     if computer_choice in computer_space_list:
         if tic_board[computer_choice] == "Empty":
@@ -37,13 +41,15 @@ def check_computer_valid_spot(tic_board, computer_choice, computer_space_list):
     else:
         return tic_board, False
 
+#Uses the valid player spot checker to add the spot to the board
 def player_board_choice(tic_board):
     player_spot_valid = False
     while player_spot_valid == False:
         print_board()
-        player_choice = input("Please choose the spot you want to put an O in.")
+        player_choice = input("Please choose the spot you want to put an O in: ")
         tic_board, player_spot_valid = check_player_valid_spot(tic_board, player_choice)
-        
+
+#Same as above but tweaked for the computer
 def computer_board_choice(tic_board, can_continue):
     if can_continue == True:
         computer_spot_valid = False
@@ -55,6 +61,7 @@ def computer_board_choice(tic_board, can_continue):
     else:
         return tic_board
 
+#Checking if there is a winner
 def check_winner(tic_board):
     tic_winner = "Nobody"
     if tic_board["first"] == "O" and tic_board["second"] == "O" and tic_board["third"] == "O":
@@ -91,6 +98,7 @@ def check_winner(tic_board):
         tic_winner = "Computer"
     return tic_winner
 
+#If there is a winner add to or stop the players winstreak
 def add_stop_winstreak(tic_winner, player_winstreak):
     if tic_winner == "Computer":
         return player_winstreak, False
@@ -99,6 +107,7 @@ def add_stop_winstreak(tic_winner, player_winstreak):
     else:
         print("Unexpected error occurred.")
 
+#The core game this uses all the previous functions
 def tic_tac_toe_game(tic_board):
     player_winstreak = 0
     tic_board_to_get_back_to = copy.deepcopy(tic_board)

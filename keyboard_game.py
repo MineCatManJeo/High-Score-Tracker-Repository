@@ -4,6 +4,7 @@ import keyboard
 
 import time
 
+#This is the entire spacebar presses game
 def spacebar_per_seconds_game():
     total_time = 15.00
     total_time = float(total_time)

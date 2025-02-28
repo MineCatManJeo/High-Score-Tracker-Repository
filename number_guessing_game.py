@@ -2,6 +2,7 @@
 
 import random
 
+#Getting if the guess is above the number, lower than it, is at the number, and it also includes some error handling
 def do_guess(random_num, user_guess):
     if user_guess > random_num:
         return "Above"
@@ -15,11 +16,13 @@ def do_guess(random_num, user_guess):
     elif user_guess > 1000:
         print("You can't guess a number above 1000")
         return "None"
-    
+
+#Gets the random number
 def get_random_num():
     random_num = random.randint(1, 1000)
     return random_num
 
+#Adding one to the guesses variable if the guess is above or below the number
 def check_guess_add_guesses(user_guess, number_of_guesses):
     if user_guess == "Above":
         number_of_guesses = number_of_guesses + 1
@@ -33,6 +36,7 @@ def check_guess_add_guesses(user_guess, number_of_guesses):
     if user_guess == "None":
         return number_of_guesses
 
+#Checking to see if the user guesses the number
 def check_guess_check_if_guessed(user_guess, number_of_guesses):
     if user_guess == "Above":
         print("You guessed above the number try again!")
@@ -46,6 +50,7 @@ def check_guess_check_if_guessed(user_guess, number_of_guesses):
     if user_guess == "None":
         return False
 
+#The core game this uses all the previous functions
 def number_guessing_game():
     user_has_guessed_number = False
     number_of_guesses = 0
