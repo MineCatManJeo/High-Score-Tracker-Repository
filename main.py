@@ -1,15 +1,11 @@
 #Max H, User Interface / The Main Function
 
+#Importing all the neccesary files/functions for this program to work
 import keyboard_game
-
 import number_guessing_game
-
 import tic_tac_toe_game
-
 import user_profiles
-
 import hs_lead
-
 import add_scores
 
 #Adding user scores to a list in a format to be added to the leaderboard
