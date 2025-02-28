@@ -10,6 +10,7 @@ import user_profiles
 
 import hs_lead
 
+#The function that holds all the specific games
 def game_library():
     high_score_dict = {"Keyboard game score": "Nothin", "Number guessing game score": "Nothin", "Tic tac toe game score": "Nothin"}
     while True:
@@ -36,12 +37,14 @@ def game_library():
             print("Please type in a number.")
     return high_score_dict
 
+#Grouping all the account functions into a single one
 def account_management():
     user_profiles.load_user_profiles()
     user_profiles.leaderboard_fixer()
     user_profiles.user_login()
     user_profiles.save_user_profiles()
 
+#The main user interface
 def main():
     while True:
         print("1. Game Library")
@@ -64,4 +67,3 @@ def main():
                 print("Invalid option please try again.")
         else:
             print("Please type in a number.")
-        
