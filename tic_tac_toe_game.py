@@ -1,5 +1,5 @@
 #Max H, Tic Tac Toe Game, random needs to be imported for this to work
-
+import copy
 import random
 
 tic_tac_toe_board = {"first": "Empty", "second": "Empty", "third": "Empty", "fourth": "Empty", "fifth": "Empty", "sixth": "Empty", "seventh": "Empty", "eighth": "Empty", "ninth": "Empty"}
@@ -16,7 +16,6 @@ def check_player_valid_spot(tic_board, player_choice, can_continue):
             if tic_board[player_choice] == "Empty":
                 tic_board[player_choice] = "O"
                 print(f"Successfully put an O in spot {player_choice}.")
-                print(type(tic_board))
                 return tic_board, True
             else:
                 print("There is already an X or an O in that spot please try again.")
@@ -58,9 +57,6 @@ def computer_board_choice(tic_board, can_continue):
 
 def check_winner(tic_board):
     tic_winner = "Nobody"
-    print(type(tic_board))
-    value_list = tic_board.values()
-    print(value_list)
     if tic_board["first"] == "O" and tic_board["second"] == "O" and tic_board["third"] == "O":
         tic_winner = "Player"
     elif tic_board["first"] == "O" and tic_board["fourth"] == "O" and tic_board["seventh"] == "O":
@@ -105,9 +101,10 @@ def add_stop_winstreak(tic_winner, player_winstreak):
 
 def tic_tac_toe_game(tic_board):
     player_winstreak = 0
-    tic_board_to_get_back_to = tic_board
+    tic_board_to_get_back_to = copy.deepcopy(tic_board)
     player_can_continue = True
     while player_can_continue == True:
+        player_valid_spot = False
         tic_board = computer_board_choice(tic_board, player_can_continue)
         who_has_won = check_winner(tic_board)
         if who_has_won != "Nobody":
@@ -118,21 +115,21 @@ def tic_tac_toe_game(tic_board):
             elif who_has_won == "Player":
                 player_winstreak, player_can_continue = add_stop_winstreak(who_has_won, player_winstreak)
                 tic_board = tic_board_to_get_back_to
-                print("You have won this game another win was added to your winstreak!")
+                print(f"You have won this game another win was added to your winstreak! Your winstreak is: {player_winstreak}")
         print_board(tic_board)
-        user_board_choice = input("The computer has done their turn which which space on the board do you want to put an O in?: ")
-        tic_board = check_player_valid_spot(tic_board, user_board_choice, player_can_continue)
-        print(tic_board)
+        while player_valid_spot == False:
+            user_board_choice = input("The computer has done their turn which which space on the board do you want to put an O in?: ")
+            tic_board, player_valid_spot = check_player_valid_spot(tic_board, user_board_choice, player_can_continue)
+            print(tic_board)
         who_has_won = check_winner(tic_board)
-        if who_has_won != "Nobody":
-            if who_has_won == "Computer":
-                player_winstreak, player_can_continue = add_stop_winstreak(who_has_won, player_winstreak)
-                tic_board = tic_board_to_get_back_to
-                print(f"Sadly you have lost your ending winstreak was: {player_winstreak}")
-            elif who_has_won == "Player":
-                player_winstreak, player_can_continue = add_stop_winstreak(who_has_won, player_winstreak)
-                tic_board = tic_board_to_get_back_to
-                print("You have won this game another win was added to your winstreak!")
+        if who_has_won == "Computer":
+            player_winstreak, player_can_continue = add_stop_winstreak(who_has_won, player_winstreak)
+            tic_board = copy.deepcopy(tic_board_to_get_back_to)
+            print(f"Sadly you have lost your ending winstreak was: {player_winstreak}")
+        elif who_has_won == "Player":
+            player_winstreak, player_can_continue = add_stop_winstreak(who_has_won, player_winstreak)
+            tic_board = copy.deepcopy(tic_board_to_get_back_to)
+            print("You have won this game another win was added to your winstreak!")
     return player_winstreak
 
 tic_tac_toe_game(tic_tac_toe_board)
