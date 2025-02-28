@@ -23,7 +23,7 @@ leaderboard = {
     "inexistant": 1000
 } #Placeholder names
 
-#Relative paths.
+#The Relative paths given by Gabriel, for the scores coming from the different games.
 #guessing.csv 
 #keyboard.csv
 #tic_tac.csv
@@ -44,13 +44,19 @@ def hs_leaderboard():
 
         if hs_interface == "1": #Tic Tac Toe
             print("Welcome to the Tic Tac Toe Leaderboard!")
-        if hs_interface == "2": #Num Guessing
+        elif hs_interface == "2": #Num Guessing
             print("Welcome to the Number Guessing Leaderboard!")
-        if hs_interface == "3": #Keyboard
+        elif hs_interface == "3": #Keyboard
             print("Welcome to the Keyboard Clicking Leaderboard!")
-        if hs_interface == "4":
+        elif hs_interface == "4":
             print("Thank you for using our system, goodbye!")
             continue #Loop back to main function that will be shared with the group soon.
+        elif hs_interface == "":
+            print("You entered nothing, please try again.")
+            continue
+        else:
+            print("This doesn't work!")
+            continue
 
         try:
             highscore_query = int(input("""What would you like to do?
