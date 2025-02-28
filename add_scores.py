@@ -21,9 +21,8 @@ def add_scores(user_key,score,game,games):
                 rows.append(row)
             rows.sort(key=lambda x: int(x[1]),reverse=True)
         if len(rows) > 10:
-            print('popped a score')
             rows.pop(-1)
-            with open(f'{games[game-1]}.csv','w',newline='') as scores:
-                writer = csv.writer(scores)
-                rows.insert(0,['user_key','score'])
-                writer.writerows(rows)
+        with open(f'{games[game-1]}.csv','w',newline='') as scores:
+            writer = csv.writer(scores)
+            rows.insert(0,['user_key','score'])
+            writer.writerows(rows)
