@@ -99,29 +99,29 @@ def new_account(users):
 
 # Main function to handle user login or account creation
 def user_login():
-    try:
-        users = load_user_profiles()
-        leaderboard_fixer(users)
-        print("Welcome to Game Central!")
+    while True:
+        try:
+            users = load_user_profiles()
+            leaderboard_fixer(users)
+            print("Welcome to Game Central!")
 
-        while True:
-            choice = input("Do you want to make a new account (1) or access an account (2)?: ").strip()
-            if choice == "1":
-                user_key = new_account(users)
-                break
-            elif choice == "2":
-                user_key = access_account(users)
-                if user_key is False:
+            while True:
+                choice = input("Do you want to make a new account (1) or access an account (2)?: ").strip()
+                if choice == "1":
                     user_key = new_account(users)
-                break
-            else:
-                print("Invalid choice. Please enter 1 or 2.")
-                continue
-        
-        save_user_profiles(users)
-        print(f"Welcome, {user_key}!")
-        return user_key
-    except:
-        print("An error occurred during login.")
-
-user_key = user_login()
+                    break
+                elif choice == "2":
+                    user_key = access_account(users)
+                    if user_key is False:
+                        user_key = new_account(users)
+                    break
+                else:
+                    print("Invalid choice. Please enter 1 or 2.")
+                    continue
+            
+            save_user_profiles(users)
+            print(f"Welcome, {user_key}!")
+            return user_key
+        except:
+            print("An error occurred during login.")
+            continue
