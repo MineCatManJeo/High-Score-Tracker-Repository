@@ -12,7 +12,7 @@ import hs_lead
 
 #The function that holds all the specific games
 def game_library():
-    high_score_dict = {"Keyboard game score": "Nothin", "Number guessing game score": "Nothin", "Tic tac toe game score": "Nothin"}
+    high_score_dict = {"keyboard": "Nothin", "guessing": "Nothin", "tic_tac": "Nothin"}
     while True:
         user_input = input("""Which game do you want to play?: 
                         1. spacebar presses in a minute (try to press the spacebar as much as possible in a minute)
@@ -23,13 +23,13 @@ def game_library():
             user_input = int(user_input)
             if user_input == 1:
                 keyboard_game_high_score = keyboard_game.spacebar_per_seconds_game()
-                high_score_dict["Keyboard game score"] = keyboard_game_high_score
+                high_score_dict["keyboard"] = keyboard_game_high_score
             elif user_input == 2:
                 number_guessing_game_high_score = number_guessing_game.number_guessing_game()
-                high_score_dict["Number guessing game score"] = number_guessing_game_high_score
+                high_score_dict["guessing"] = number_guessing_game_high_score
             elif user_input == 3:
                 tic_tac_toe_game_high_score = tic_tac_toe_game.tic_tac_toe_game()
-                high_score_dict["Tic tac toe game score"] = tic_tac_toe_game_high_score
+                high_score_dict["tic_tac"] = tic_tac_toe_game_high_score
             elif user_input == 4:
                 print("Hope these games were fun! See you next time.")
                 break
