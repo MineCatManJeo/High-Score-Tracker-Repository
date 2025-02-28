@@ -35,5 +35,8 @@ def add_scores_user(user_key,score,game):
             if row[0] == user_key:
                 row[['keyboard','guessing','tic_tac'].index(game)+2] = score
             rows.append(row)
+        scores.seek(0)
         writer = csv.writer(scores)
         writer.writerows(rows)
+
+add_scores_user('Gabe','35','keyboard')
