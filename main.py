@@ -2,7 +2,6 @@
 from add_scores import *
 
 def main():
-    games = ['keyboard','guessing','tic_tac']
     user_key = input("Who is user?: ")
     while True:
         option = input('1: Game, 2: Exit: ')
