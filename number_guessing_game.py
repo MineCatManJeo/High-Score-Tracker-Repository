@@ -66,5 +66,3 @@ def number_guessing_game():
         else:
             print("Please type in a number.")
     return number_of_guesses
-
-number_guessing_game()
