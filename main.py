@@ -6,7 +6,7 @@
 import number_guessing_game
 import tic_tac_toe_game
 import user_profiles
-#from hs_lead import *
+import hs_lead
 import add_scores
 
 
@@ -109,7 +109,7 @@ def main():
             elif user_input == 2:
                 user_key = user_profiles.user_login()
             elif user_input == 3:
-                #hs_lead.hs_leaderboard()
+                hs_lead.hs_leaderboard()
                 pass
             elif user_input == 4:
                 print("Hope you had fun using our program!")

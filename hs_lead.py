@@ -117,7 +117,6 @@ def hs_leaderboard():
                 print("Invalid input. Please enter a number.")
                 
 #Run the leaderboard function
-hs_leaderboard()
 ####
 ####
 ####
