@@ -1,6 +1,6 @@
 # Gabes Main Test files
 import csv
-from add_scores import add_scores_game as add_sg
+from add_scores import *
 from refresh import refresh
 def main():
     games = ['keyboard','guessing','tic_tac']
@@ -10,7 +10,7 @@ def main():
         if option == '1':
             game = input('Choose Game: Keyboard, Number Guessing, Tic-Tac: ').lower()
             score = input('Score: ')
-            add_sg(user_key,score,game,games)
+            add_scores(user_key,score,game)
                 
         elif option == '2':
             break

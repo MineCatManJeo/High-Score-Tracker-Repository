@@ -27,16 +27,24 @@ def add_scores_game(user_key,score,game):
             rows.insert(0,['user_key','score'])
             writer.writerows(rows)
             list()
+
 def add_scores_user(user_key,score,game):
     with open('users.csv','r+',newline='') as scores:
         reader = csv.reader(scores)
         rows = []
         for row in reader:
             if row[0] == user_key:
-                row[['keyboard','guessing','tic_tac'].index(game)+2] = score
+                game_index = ['keyboard','guessing','tic_tac'].index(game)
+                try:
+                    if int(score) > int(row[game_index+2]):
+                        row[game_index+2] = score
+                except:
+                    row[game_index+2] = score
             rows.append(row)
         scores.seek(0)
         writer = csv.writer(scores)
         writer.writerows(rows)
 
-add_scores_user('Gabe','35','keyboard')
+def add_scores(user_key,score,game):
+    add_scores_game(user_key,score,game)
+    add_scores_user(user_key,score,game)
