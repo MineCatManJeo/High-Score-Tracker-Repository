@@ -1,5 +1,4 @@
 # Gabes Main Test files
-import csv
 from add_scores import *
 from refresh import refresh
 def main():
