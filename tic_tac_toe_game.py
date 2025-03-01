@@ -140,5 +140,3 @@ def tic_tac_toe_game(tic_board):
             tic_board = copy.deepcopy(tic_board_to_get_back_to)
             print("You have won this game another win was added to your winstreak!")
     return player_winstreak
-
-tic_tac_toe_game(tic_tac_toe_board)
