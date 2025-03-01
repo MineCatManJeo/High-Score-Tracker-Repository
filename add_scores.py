@@ -1,3 +1,4 @@
+# Gabe's add scores functions
 import csv
 
 def add_scores_game(user_key,score,game):
