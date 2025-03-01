@@ -1,6 +1,6 @@
 # Gabes Main Test files
 from add_scores import *
-from refresh import refresh
+
 def main():
     games = ['keyboard','guessing','tic_tac']
     user_key = input("Who is user?: ")
@@ -13,7 +13,5 @@ def main():
                 
         elif option == '2':
             break
-        elif option.lower() =='refresh':
-            refresh(games)
 
 main()
