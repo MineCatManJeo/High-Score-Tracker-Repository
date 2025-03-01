@@ -2,9 +2,6 @@
 import copy
 import random
 
-#The tic tac toe board
-tic_tac_toe_board = {"first": "Empty", "second": "Empty", "third": "Empty", "fourth": "Empty", "fifth": "Empty", "sixth": "Empty", "seventh": "Empty", "eighth": "Empty", "ninth": "Empty"}
-
 #A function to print the board
 def print_board(tic_board):
     print(tic_board["first"], tic_board["second"], tic_board["third"])
@@ -16,9 +13,9 @@ def check_player_valid_spot(tic_board, player_choice, can_continue):
     if can_continue == True:
         player_choice = player_choice.lower()
         if player_choice in tic_board.keys():
-            if tic_board[player_choice] == "Empty":
+            if tic_board[player_choice] == "_":
                 tic_board[player_choice] = "O"
-                print(f"Successfully put an O in spot {player_choice}.")
+                print(f"Successfully put an O in the {player_choice} spot.")
                 return tic_board, True
             else:
                 print("There is already an X or an O in that spot please try again.")
@@ -33,7 +30,7 @@ def check_player_valid_spot(tic_board, player_choice, can_continue):
 #Basically the same thing as the player one but tweaked because its for the computer
 def check_computer_valid_spot(tic_board, computer_choice, computer_space_list):
     if computer_choice in computer_space_list:
-        if tic_board[computer_choice] == "Empty":
+        if tic_board[computer_choice] == "_":
             tic_board[computer_choice] = "X"
             return tic_board, True
         else:
@@ -42,12 +39,12 @@ def check_computer_valid_spot(tic_board, computer_choice, computer_space_list):
         return tic_board, False
 
 #Uses the valid player spot checker to add the spot to the board
-def player_board_choice(tic_board):
+"""def player_board_choice(tic_board):
     player_spot_valid = False
     while player_spot_valid == False:
         print_board()
-        player_choice = input("Please choose the spot you want to put an O in: ")
-        tic_board, player_spot_valid = check_player_valid_spot(tic_board, player_choice)
+        player_choice = input("Please choose the spot you want to put an O in? (first, second, ect): ")
+        tic_board, player_spot_valid = check_player_valid_spot(tic_board, player_choice)""" # APPARENTLY NOT NEEDED???
 
 #Same as above but tweaked for the computer
 def computer_board_choice(tic_board, can_continue):
@@ -108,7 +105,8 @@ def add_stop_winstreak(tic_winner, player_winstreak):
         print("Unexpected error occurred.")
 
 #The core game this uses all the previous functions
-def tic_tac_toe_game(tic_board):
+def tic_tac_toe_game():
+    tic_board = {"first": "_", "second": "_", "third": "_", "fourth": "_", "fifth": "_", "sixth": "_", "seventh": "_", "eighth": "_", "ninth": "_"}
     player_winstreak = 0
     tic_board_to_get_back_to = copy.deepcopy(tic_board)
     player_can_continue = True
@@ -125,11 +123,15 @@ def tic_tac_toe_game(tic_board):
                 player_winstreak, player_can_continue = add_stop_winstreak(who_has_won, player_winstreak)
                 tic_board = tic_board_to_get_back_to
                 print(f"You have won this game another win was added to your winstreak! Your winstreak is: {player_winstreak}")
+        print('\nComputer Placement')
         print_board(tic_board)
         while player_valid_spot == False:
-            user_board_choice = input("The computer has done their turn which which space on the board do you want to put an O in?: ")
+            user_board_choice = input("The computer has done their turn which which space on the board do you want to put an O in? (first, second, ect) (Type [Exit] to leave): ")
+            if user_board_choice.lower() == 'exit':
+                return player_winstreak
             tic_board, player_valid_spot = check_player_valid_spot(tic_board, user_board_choice, player_can_continue)
-            print(tic_board)
+            print('\nUser Placement')
+            print_board(tic_board)
         who_has_won = check_winner(tic_board)
         if who_has_won == "Computer":
             player_winstreak, player_can_continue = add_stop_winstreak(who_has_won, player_winstreak)
