@@ -39,13 +39,13 @@ def add_scores_user(user_key,score,game): # Adds the scores onto the score part 
         reader = csv.reader(scores)
         rows = []
         for row in reader:
-            if row[0] == user_key:
+            if row[0] == user_key: # goes through each row in the users
                 game_index = ['keyboard','guessing','tic_tac'].index(game)
                 try:
-                    if int(score) > int(row[game_index+2]):
-                        row[game_index+2] = score
-                except:
-                    row[game_index+2] = score
+                    if int(score) > int(row[game_index+2]): # If their new score is higher that the old score
+                        row[game_index+2] = score # Add in their new value
+                except: 
+                    row[game_index+2] = score # If they didn't have any scores add in their new score
             rows.append(row)
         scores.seek(0)
         writer = csv.writer(scores)
@@ -54,5 +54,3 @@ def add_scores_user(user_key,score,game): # Adds the scores onto the score part 
 def add_scores(user_key,score,game):
     add_scores_game(user_key,score,game)
     add_scores_user(user_key,score,game)
-
-add_scores_game('Gabe',250,'keyboard')
