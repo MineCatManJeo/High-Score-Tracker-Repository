@@ -2,7 +2,7 @@ import csv
 
 def add_scores_game(user_key,score,game):
     try:
-        with open(f'{game}.csv','r') as scores: # This fails if there is no file, this is just so it can add a new file easily if needed
+        with open(f'game_csv/{game}.csv','r') as scores: # This fails if there is no file, this is just so it can add a new file easily if needed
             pass
 
     except:
@@ -34,7 +34,7 @@ def add_scores_game(user_key,score,game):
             writer.writerows(rows)
 
 
-def add_scores_user(user_key,score,game):
+def add_scores_user(user_key,score,game): # Adds the scores onto the score part of the users profile, reads the whole thing, adds the score rewrites the whole file with the score
     with open('users.csv','r+',newline='') as scores:
         reader = csv.reader(scores)
         rows = []
@@ -54,3 +54,5 @@ def add_scores_user(user_key,score,game):
 def add_scores(user_key,score,game):
     add_scores_game(user_key,score,game)
     add_scores_user(user_key,score,game)
+
+add_scores_game('Gabe',250,'keyboard')
