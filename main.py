@@ -48,6 +48,8 @@ def game_library(user_key):
 def main():
     user_key = user_profiles.user_login()
     while True:
+        if user_key == None:
+            return
         print("1. Game Library")
         print("2. Account Manager")
         print("3. High Scores")

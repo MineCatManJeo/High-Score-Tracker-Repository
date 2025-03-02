@@ -103,10 +103,10 @@ def user_login():
         try:
             users = load_user_profiles()
             leaderboard_fixer(users)
-            print("Welcome to Game Central!")
+            print("\033cWelcome to Game Central!")
 
             while True:
-                choice = input("Do you want to make a new account (1) or access an account (2)?: ").strip()
+                choice = input("Do you want to make a new account (1), access an account (2), or exit program (3)?: ").strip()
                 if choice == "1":
                     user_key = new_account(users)
                     break
@@ -115,8 +115,11 @@ def user_login():
                     if user_key is False:
                         user_key = new_account(users)
                     break
+                elif choice == "3":
+                    print("Thank you for using our program!")
+                    return None
                 else:
-                    print("Invalid choice. Please enter 1 or 2.")
+                    print("Invalid choice. Please enter 1, 2 or 3.")
                     continue
             
             save_user_profiles(users)

@@ -36,13 +36,6 @@ def read_leaderboard(filename):
 
     return leaderboard_game, leaderboard_user
 
-#Function to display leaderboard for a selected game
-"""def display_leaderboard(game_file):
-    leaderboard = read_leaderboard(game_file)
-    #return sorted(leaderboard.items(), key=lambda x: x[1], reverse=True)
-    return leaderboard"""
-
-
 #Main leaderboard function
 def hs_leaderboard():
     
@@ -55,15 +48,15 @@ def hs_leaderboard():
         hs_interface = input("What specific leaderboard would you like to see? ").strip()
         if hs_interface == "1":
             game_file = "keyboard.csv"
-            print("\nWelcome to the Tic Tac Toe Leaderboard!")
+            print("\nWelcome to the Keyboard Clicking Leaderboard!")
         elif hs_interface == "2":
             game_file = "guessing.csv"
             print("\nWelcome to the Number Guessing Leaderboard!")
         elif hs_interface == "3":
             game_file = "tic_tac.csv"
-            print("\nWelcome to the Keyboard Clicking Leaderboard!")
+            print("\nWelcome to the Tic Tac Toe Leaderboard!")
         elif hs_interface == "4":
-            print("Thank you for using our system, goodbye!")
+            print("\033cThanks for looking at leaderboards!\n")
             return
         else:
             print("Invalid selection. Please try again.")
