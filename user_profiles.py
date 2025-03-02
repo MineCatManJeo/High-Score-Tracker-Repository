@@ -59,7 +59,10 @@ def access_account(users):
     while True:
         try:
             username = input("What is your username?(Type leave to make a new account): ").strip()
-
+            if username == "SillyBilly":
+                print('Error: SillyBilly too powerful')
+                continue
+            
             if username.lower() == "leave":
                 return False
 

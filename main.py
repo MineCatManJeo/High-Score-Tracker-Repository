@@ -25,21 +25,24 @@ def game_library(user_key):
             if user_input == '1':
                 game_score = keyboard_game.spacebar_per_seconds_game()
                 game = 'keyboard'
+                sorting = True
 
             elif user_input == '2':
                 game_score = number_guessing_game.number_guessing_game()
                 game = 'guessing'
+                sorting = False
                 
             elif user_input == '3':
                 game_score = tic_tac_toe_game.tic_tac_toe_game()
                 game = 'tic_tac'
+                sorting = True
 
             elif user_input == '4':
                 print("Hope these games were fun! See you next time.")
                 break
             else:
                 print("You have not selected one of the options.")
-            add_scores(user_key,game_score,game)
+            add_scores(user_key,game_score,game,sorting)
         else:
             print("Please type in a number.")
         
